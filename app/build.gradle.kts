@@ -1,6 +1,7 @@
 plugins {
       id("com.android.application")
       id("org.jetbrains.kotlin.android")
+      id("com.google.gms.google-services") version "4.4.2" apply false
 }
 
 android {
@@ -55,6 +56,10 @@ dependencies {
       implementation("io.coil-kt:coil-gif:2.1.0")
       implementation("com.google.accompanist:accompanist-drawablepainter:0.35.0-alpha")
       implementation ("androidx.compose.material:material-icons-extended")
+      implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
+      implementation("com.google.firebase:firebase-auth")
+      implementation("com.google.firebase:firebase-firestore")
+      implementation("com.google.firebase:firebase-analytics")
 
 
       implementation("androidx.core:core-ktx:1.13.1")
