@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "666624923066",
+    "project_id": "travelogue-2024",
+    "storage_bucket": "travelogue-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666624923066:android:56758f4682a61b0a94f983",
+        "android_client_info": {
+          "package_name": "com.example.travelogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666624923066-f7dce68hcp4ghq0lbmgq0kg5ldfn4evc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.travelogue",
+            "certificate_hash": "e0ed9253225b003ff6de3a777e3fd0c5c5d29b16"
+          }
+        },
+        {
+          "client_id": "666624923066-41af8cia38bjmv6pht5sc7g6j6r6vs83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr0NaYL0yBxRW7pQiM9Mo_0Ue_q6rUFC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666624923066-41af8cia38bjmv6pht5sc7g6j6r6vs83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

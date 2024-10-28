@@ -1,7 +1,7 @@
 plugins {
       id("com.android.application")
       id("org.jetbrains.kotlin.android")
-      id("com.google.gms.google-services") version "4.4.2" apply false
+      id("com.google.gms.google-services")
 }
 
 android {
@@ -60,6 +60,9 @@ dependencies {
       implementation("com.google.firebase:firebase-auth")
       implementation("com.google.firebase:firebase-firestore")
       implementation("com.google.firebase:firebase-analytics")
+      implementation("androidx.compose.runtime:runtime-livedata:1.7.4")
+      implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+      implementation ("com.google.firebase:firebase-auth-ktx:22.3.0")
 
 
       implementation("androidx.core:core-ktx:1.13.1")
