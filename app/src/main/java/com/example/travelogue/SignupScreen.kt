@@ -1,5 +1,6 @@
 package com.example.travelogue
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -38,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -102,7 +104,8 @@ fun SignUpScreen(authViewModel: AuthViewModel, onClickSignInText:()->Unit)
                   modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        .border(border = BorderStroke(2.dp,Color(48,136,126)),
+                        .border(
+                              border = BorderStroke(2.dp, Color(48, 136, 126)),
                               RoundedCornerShape(15.dp)
                         ),
                   shape = RoundedCornerShape(15.dp)
@@ -127,7 +130,8 @@ fun SignUpScreen(authViewModel: AuthViewModel, onClickSignInText:()->Unit)
                   modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        .border(border = BorderStroke(2.dp,Color(48,136,126)),
+                        .border(
+                              border = BorderStroke(2.dp, Color(48, 136, 126)),
                               RoundedCornerShape(15.dp)
                         ),
                   shape = RoundedCornerShape(15.dp)
@@ -164,7 +168,8 @@ fun SignUpScreen(authViewModel: AuthViewModel, onClickSignInText:()->Unit)
                   modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        .border(border = BorderStroke(2.dp,Color(48,136,126)),
+                        .border(
+                              border = BorderStroke(2.dp, Color(48, 136, 126)),
                               RoundedCornerShape(15.dp)
                         ),
                   shape = RoundedCornerShape(15.dp)
@@ -202,7 +207,8 @@ fun SignUpScreen(authViewModel: AuthViewModel, onClickSignInText:()->Unit)
                   modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp)
-                        .border(border = BorderStroke(2.dp,Color(48,136,126)),
+                        .border(
+                              border = BorderStroke(2.dp, Color(48, 136, 126)),
                               RoundedCornerShape(15.dp)
                         ),
                   shape = RoundedCornerShape(15.dp)
@@ -210,9 +216,18 @@ fun SignUpScreen(authViewModel: AuthViewModel, onClickSignInText:()->Unit)
             )
             Spacer(modifier = Modifier.height(24.dp))
 
+            val context= LocalContext.current
             Button(
-                  onClick = {authViewModel.signUp(emailName,fullName,password,confirmPassword)
-                        onClickSignInText()},
+                  onClick = {
+                              if(password==confirmPassword) {
+                                    authViewModel.signUp(emailName, fullName, password, confirmPassword)
+                                    onClickSignInText()
+                              }
+                              else{
+                                    val text="Passwords do not match!"
+                                    Toast.makeText(context,text,Toast.LENGTH_SHORT).show()
+                              }
+                            },
                   colors = ButtonDefaults.buttonColors(containerColor = Color(58,166,153)),
                   modifier = Modifier
                         .width(200.dp)

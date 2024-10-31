@@ -1,6 +1,7 @@
 package com.example.travelogue
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -49,6 +50,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.livedata.observeAsState
 
 val customTextStyle3= TextStyle(
       fontFamily =nunitoFontFamily,
@@ -72,12 +74,13 @@ val customTextStyle5= TextStyle(
       letterSpacing = 0.sp
 )
 @Composable
-fun LoginScreen(onClickSignUp:()->Unit,onClickSignIn:()->Unit){
+fun LoginScreen(authViewModel: AuthViewModel,onClickSignUp:()->Unit,onClickSignIn:()->Unit){
       val context = LocalContext.current
       var password by remember { mutableStateOf("") }
       var passwordVisible by remember { mutableStateOf(false) }
       var userName by remember{mutableStateOf("")}
 
+      val result by authViewModel.authResult.observeAsState()
       BackHandler {
             // Exit the app instead of going back to the home screen
             (context as? Activity)?.finish()
@@ -188,11 +191,23 @@ fun LoginScreen(onClickSignUp:()->Unit,onClickSignIn:()->Unit){
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-
+            val context= LocalContext.current
             // Sign in Button
             Button(
-                  onClick = { /*TODO: handle sign-in*/
-                        onClickSignIn()},
+                  onClick = {
+                        authViewModel.login(userName,password)
+                        when(result){
+                              is Result.Success ->{
+                                    onClickSignIn()
+                              }
+                              is Result.Error->{
+                                    Toast.makeText(context,"Username/Password incorrect",Toast.LENGTH_SHORT).show()
+                              }
+                              else->{
+
+                              }
+                        }
+                            },
                   colors = ButtonDefaults.buttonColors(containerColor = Color(58,166,153)),
                   modifier = Modifier
                         .width(200.dp)

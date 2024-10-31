@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 @Composable
-fun Navigation(navController: NavHostController) {
+fun Navigation(navController: NavHostController,authViewModel: AuthViewModel) {
       NavHost(
             navController = navController, // Corrected equals sign
             startDestination = Screen.Homescreen.route // Corrected equals sign
@@ -18,14 +18,13 @@ fun Navigation(navController: NavHostController) {
 
             }
             composable(Screen.LoginScreen.route){
-                  LoginScreen({ navController.navigate(Screen.SignupScreen.route) },
+                  LoginScreen( authViewModel=authViewModel,{navController.navigate(Screen.SignupScreen.route) },
                         {navController.navigate(Screen.MainMenScreen.route)})
             }
             composable(Screen.SignupScreen.route)
             {
-                  SignUpScreen(onClickSignUpButton = {
-                        navController.navigate(Screen.MainMenScreen.route)
-                  },{navController.navigate(Screen.LoginScreen.route)})
+                  SignUpScreen(authViewModel=authViewModel
+                        ,{navController.navigate(Screen.LoginScreen.route)})
             }
 
             composable(Screen.MainMenScreen.route)
