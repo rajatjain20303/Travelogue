@@ -51,6 +51,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.livedata.observeAsState
+import com.example.travelogue.presentation.sign_in.SignInState
 
 val customTextStyle3= TextStyle(
       fontFamily =nunitoFontFamily,
@@ -74,7 +75,11 @@ val customTextStyle5= TextStyle(
       letterSpacing = 0.sp
 )
 @Composable
-fun LoginScreen(authViewModel: AuthViewModel,onClickSignUp:()->Unit,onClickSignIn:()->Unit){
+fun LoginScreen(authViewModel: AuthViewModel,
+                onClickSignUp:()->Unit,
+                onClickSignIn:()->Unit,
+                state:SignInState,
+                onGoogleClick:()->Unit){
       val context = LocalContext.current
       var password by remember { mutableStateOf("") }
       var passwordVisible by remember { mutableStateOf(false) }
@@ -191,7 +196,7 @@ fun LoginScreen(authViewModel: AuthViewModel,onClickSignUp:()->Unit,onClickSignI
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-            val context= LocalContext.current
+
             // Sign in Button
             Button(
                   onClick = {
@@ -231,7 +236,9 @@ fun LoginScreen(authViewModel: AuthViewModel,onClickSignUp:()->Unit,onClickSignI
                   horizontalArrangement = Arrangement.Center
             ) {
                   // Google Icon
-                  IconButton(onClick = { /*TODO*/ }) {
+                  IconButton(onClick = {
+                        onGoogleClick()
+                  }) {
                         Image(
                               painter = painterResource(id = R.drawable.search), // Replace with Google Icon
                               contentDescription = "Google Sign In",
